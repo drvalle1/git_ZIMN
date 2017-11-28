@@ -3,8 +3,8 @@ library('mvtnorm')
 set.seed(1)
 
 setwd('U:\\modeling abundance\\git_ZIMN')
-source('multinom functions.R')
-source('multinom main func.R')
+source('ZIMN functions.R')
+source('ZIMN main func.R')
 dat=read.csv('fake data.csv',as.is=T)
 dat$x1=dat$x; dat$x2=dat$x^2;
 
@@ -12,7 +12,7 @@ ngibbs=50000
 covs=c('x1','x2')
 prior.var=1
 
-res=multinom.gibbs(dat=dat,ngibbs=ngibbs,covs=covs,burnin=5000,prior.var=prior.var)
+res=ZIMN.gibbs(dat=dat,ngibbs=ngibbs,covs=covs,burnin=5000,prior.var=prior.var)
 
 par(mfrow=c(1,1))
 ebreaks=apply(res$b,2,mean)

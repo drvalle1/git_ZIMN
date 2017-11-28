@@ -4,8 +4,8 @@ set.seed(1)
 n=500
 x=seq(from=-1,to=1,length.out=n)
 
-true.a0=a0=1
-true.a1=a1=-2
+true.a0=a0=1 #5 this also works when zeroes are absent
+true.a1=a1=-1 #0
 true.w=w=rnorm(n,mean=a0+a1*x,sd=1)
 plot(x,w)
 

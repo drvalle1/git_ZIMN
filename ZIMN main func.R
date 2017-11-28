@@ -1,11 +1,12 @@
-multinom.gibbs=function(dat,ngibbs,covs,burnin,prior.var){
+ZIMN.gibbs=function(dat,ngibbs,covs,burnin,prior.var){
   nobs=nrow(dat)
   
   tmp=sort(unique(dat$y))
   tmp1=tmp[tmp!=0]
   nclass=length(tmp1)
   class1=1:nclass
-  uni=data.frame(y=c(0,tmp1),y1=c(0,class1))
+  if (sum(tmp==0)>0)  uni=data.frame(y=c(0,tmp1),y1=c(0,class1)) #if zero exists
+  if (sum(tmp==0)==0) uni=data.frame(y=tmp1,y1=class1)           #if zero does not exist
   
   dat$ind=1:nrow(dat)
   dat1=merge(dat,uni,all=T); dim(dat); dim(dat1)
